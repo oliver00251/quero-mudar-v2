@@ -27,7 +27,7 @@
               <input type="date" class="form-control" id="dt_ref" name="dt_ref" required>
             </div>
             <div class="mb-3">
-              <label for="descricao" class="form-label">Observação (Opcional)</label>
+              <label for="descricao" class="form-label">Observação(Opcional)</label>
               <input type="text" class="form-control" value="-" id="descricao" placeholder="Digite alguma descrição do que será pago" name="descricao">
             </div>
           </div>
