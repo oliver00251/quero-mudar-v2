@@ -29,7 +29,7 @@ use App\Http\Controllers\UsuarioController;
 
 Route::get('/detalhamento', [detalhamentoController::class, 'index'])->name('detalhamento.index');
 
-Route::get('/{mes?}/{ano?}/{tipo?}', [HomeController::class, 'index'])->name('home.index');
+Route::get('{dia?}/{mes?}/{ano?}/{tipo?}', [HomeController::class, 'index'])->name('home.index');
 // Define a rota para o método cliente no HomeController
 Route::get('/clientes-demandas', [HomeController::class, 'cliente'])->name('cliente.index');
 Route::post('/clientes/store', [ClienteController::class, 'store'])->name('clientes.store');
@@ -76,9 +76,6 @@ Route::prefix('categorias')->name('categorias.')->group(function () {
     Route::get('/', [CategoriaController::class, 'index'])->name('index');
     Route::get('create', [CategoriaController::class, 'create'])->name('create');
     Route::post('/', [CategoriaController::class, 'store'])->name('store');
-    Route::get('{categoria}', [CategoriaController::class, 'show'])->name('show');
-    Route::get('{categoria}/edit', [CategoriaController::class, 'edit'])->name('edit');
-    Route::post('/editar-receita', [CategoriaController::class, 'update'])->name('update');
     Route::delete('{categoria}', [CategoriaController::class, 'destroy'])->name('destroy');
 });
 

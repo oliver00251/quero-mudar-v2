@@ -14,6 +14,10 @@ class CriarTabelaPagamentos extends Migration
             $table->decimal('valor', 10, 2);
             $table->date('data');
             $table->string('tipo',2);
+            $table->string('veiculo')->nullable();
+            $table->string('qtd_horas')->nullable();
+            $table->string('vlr_hora')->nullable();
+            $table->string('qtd_ajudante')->nullable();
             $table->string('descricao')->nullable();
             $table->string('metodo')->nullable();
             $table->timestamps();

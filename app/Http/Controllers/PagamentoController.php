@@ -16,28 +16,37 @@ class PagamentoController extends Controller
 
     public function store(Request $request)
     {
-        // Validar os dados do formulário
-        $validatedData = $request->validate([
-            'descricao' => 'required|string|max:255',
-            'tipo' => 'required|string|max:255',
-            'categoria' => 'required|string', // ou 'required|exists:categorias,id' se você tiver uma tabela de categorias
-            'vlr_transacao' => 'required|numeric|min:0',
-            'dt_ref' => 'required|date',
-        ]);
+        try {
+          
     
-        // Criar uma nova instância de Pagamento
-        $pagamento = new Pagamento();
-        $pagamento->descricao = $validatedData['descricao'];
-        $pagamento->categoria_id = $validatedData['categoria'];
-        $pagamento->valor = $validatedData['vlr_transacao'];
-        $pagamento->tipo = $validatedData['tipo'];
-        $pagamento->data = $validatedData['dt_ref'];
+            // Criar uma nova instância de Pagamento
+            $pagamento = new Pagamento();
+            $pagamento->descricao = $request->descricao ?? '-';
+            $pagamento->categoria_id = $request->categoria;
+            $pagamento->valor = $request->vlr_transacao;
+            $pagamento->tipo = $request->tipo;
+            $pagamento->data = $request->dt_ref;
+            $pagamento->veiculo = $request->veiculo;
+            $pagamento->qtd_horas = $request->qtd_horas;
+            $pagamento->vlr_hora = $request->vlr_hora;
+            $pagamento->qtd_ajudante = $request->qtd_ajudante;
     
-        // Salvar o pagamento no banco de dados
-        $pagamento->save();
+            // Salvar o pagamento no banco de dados
+            $pagamento->save();
     
-        return redirect()->route('home.index');
+            return redirect()->route('home.index')->with('success', 'Pagamento criado com sucesso!');
+    
+        } catch (\Exception $e) {
+            // Log da exceção (opcional)
+            \Log::error('Erro ao criar pagamento: ' . $e->getMessage());
+    
+            // Redirecionar com uma mensagem de erro
+            return redirect()->back()->with('error', 'Erro ao criar pagamento. Tente novamente.')->withInput();
+        }
     }
+    
+    
+
     
 
     public function show($id)

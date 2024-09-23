@@ -41,19 +41,38 @@
 <div class="row mb-4">
     <div class="col-md-2">
         <ul class="list-group">
-            <li class="list-group-item active d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalCategoria">
+            <li class="list-group-item active d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalCategoriaEntrada">
                 <span>Entradas</span>
-                <span><i class="fa fa-plus-circle" aria-hidden="true" style="cursor: pointer;"></i></span>
+                <span>
+                    <i class="fa fa-plus-circle fa-plus-circle-entrada" 
+                       style="cursor: pointer;" 
+                       data-bs-toggle="modal" 
+                       data-bs-target="#modalCategoriaEntrada" 
+                       title="Adicionar Entrada"></i>
+                </span>
             </li>
             
-            @foreach($categoria as $cat)
-            <li class="list-group-item">
-                <span>{{ $cat->nome }}</span>
-                <span><i class="fa fa-plus-circle" aria-hidden="true" style="cursor: pointer;"></i></span>
+            @foreach($categoria->where('tipo','receita') as $cat)
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <small>
+                        {{$cat->ordem}}°-
+                        {{ $cat->nome }}
+                </small>
+                <span>
+                    <!-- Ícone de edição, com os atributos data-* para passar os dados para o modal -->
+                    <i class="fas fa-edit fa-edit-entrada" data-id="{{ $cat->id }}" data-nome="{{ $cat->nome }}" data-ordem="{{ $cat->ordem }}" data-tipo="{{ $cat->tipo }}" aria-hidden="true" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalCategoriaEntrada"></i>
+                    {{-- Ícone para adicionar entradadas --}}
+                    <i class="fa fa-plus-circle fa-plus-circle-entrada" 
+                    style="cursor: pointer;" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modalEntradas" 
+                    title="Adicionar Entrada"></i>
+                </span>
             </li>
             @endforeach
         </ul>
     </div>
+    
 
     <div class="col-md-8">
         <div class="card">
@@ -89,20 +108,40 @@
         </div>
     </div>
 
+
     <div class="col-md-2">
         <ul class="list-group">
-            <li class="list-group-item active bg-danger border-0 d-flex justify-content-between" id="cad_saidas" aria-current="true">
+            <li class="list-group-item active bg-danger border-0 d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalCategoriaSaida">
                 <span>Saídas</span>
-                <span><i class="fa fa-plus-circle" aria-hidden="true" style="cursor: pointer;"></i></span>
+                <span><i class="fa fa-plus-circle" aria-hidden="true" style="cursor: pointer;" title="Adicionar Categoria"></i></span>
             </li>
-            @foreach($categoria as $cat)
+            @foreach($categoria->where('tipo', 'despesa') as $cat)
             <li class="list-group-item">
-                <span>{{ $cat->nome }}</span>
-                <span><i class="fa fa-plus-circle" aria-hidden="true" style="cursor: pointer;"></i></span>
+                <span>
+                    <small>  
+                    {{$cat->ordem}}° -
+                    {{ $cat->nome }}
+                    </small>
+                   
+                </span>
+                <span>
+                    {{-- Ícone de edição --}}
+                    <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#modalCategoriaSaida" 
+                       data-id="{{ $cat->id }}"
+                       data-nome="{{ $cat->nome }}" 
+                       data-ordem="{{ $cat->ordem }}" 
+                       data-tipo="{{ $cat->tipo }}" 
+                       style="cursor: pointer;" title="Editar Categoria"></i>
+    
+                    {{-- Ícone para adicionar item à categoria --}}
+                    <i class="fa fa-plus-circle" aria-hidden="true" style="cursor: pointer;" title="Adicionar Item à Categoria"></i>
+                </span>
             </li>
             @endforeach
         </ul>
     </div>
+    
+    
 </div>
 
 <style>
@@ -116,6 +155,7 @@
 @include('modal.entradas')
 @include('modal.saidas')
 @include('modal.categoria')
+@include('modal.categoria-saida')
 @include('modal.fornecedores')
 @include('modal.clientes')
 
@@ -123,5 +163,13 @@
     $(document).ready(function() {
         $('#lancamentosTable').DataTable();
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Selecionar todos os ícones de edição
+    const editIcons = document.querySelectorAll('.fa-edit');
+
+ 
+});
+
 </script>
 @endsection

@@ -1,4 +1,13 @@
-<div class="navbar-brand text-center">Logo</div>
+<div class="navbar-brand d-flex justify-content-center">
+    <img src="{{ asset('img/logo.jpeg') }}" alt="Logo" style="
+    width: 61px;
+    border-radius: 100%;
+    margin-right: -1rem;
+    "
+
+    >
+</div>
+
 <ul class="nav flex-column">
     <li class="nav-item">
         <a class="nav-link" href="#" id="toggleCollapse">

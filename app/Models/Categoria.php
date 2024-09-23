@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    protected $fillable = ['nome', 'tipo','ordem'];
+    protected $fillable = ['nome', 'tipo','ordem','id'];
 
     public function transacoes()
     {
