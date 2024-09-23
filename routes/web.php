@@ -104,13 +104,12 @@ Route::prefix('fornecedores')->name('fornecedores.')->group(function () {
 // Pagamentos
 Route::prefix('pagamentos')->name('pagamentos.')->group(function () {
     Route::get('/', [PagamentoController::class, 'index'])->name('index');
-    Route::get('create', [PagamentoController::class, 'create'])->name('create');
+    Route::delete('/excluir/{id}', [PagamentoController::class, 'destroyPagamento'])->name('destroy-transacao');
     Route::post('/', [PagamentoController::class, 'store'])->name('store');
-    Route::get('{pagamento}', [PagamentoController::class, 'show'])->name('show');
-    Route::get('{pagamento}/edit', [PagamentoController::class, 'edit'])->name('edit');
-    Route::put('{pagamento}', [PagamentoController::class, 'update'])->name('update');
-    Route::delete('{pagamento}', [PagamentoController::class, 'destroy'])->name('destroy');
 });
+
+
+
 
 // Transações
 Route::prefix('transacoes')->name('transacoes.')->group(function () {

@@ -17,6 +17,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    
+
     <style>
         body {
             display: flex;
@@ -89,6 +93,7 @@
     </style>
 </head>
 <body>
+   
     <div class="sidebar card shadow bg-white">
         @include('partials.sidebar')
     </div>
@@ -97,10 +102,69 @@
         <h1 class="mb-4">@yield('header')</h1>
         @yield('content') <!-- Aqui será inserido o conteúdo das outras páginas -->
     </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.7/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+    <script>
+function confirmDelete(button) {
+    const url = button.getAttribute('data-rota');
+
+    // Verifica se o botão e a URL são válidos
+    if (!button || !url) {
+        console.error('Button ou URL não encontrado!');
+        return;
+    }
+
+    Swal.fire({
+        title: "Você tem certeza?",
+        text: "Este item será permanentemente excluído!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Criar o formulário de exclusão dinamicamente
+            const form = document.createElement('form');
+            form.method = 'POST'; // Para enviar o CSRF
+            form.action = url;
+
+            // Obter o token CSRF
+            const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
+            if (!csrfTokenMeta) {
+                console.error('Meta tag do CSRF não encontrada!');
+                return;
+            }
+            const csrfToken = csrfTokenMeta.getAttribute('content');
+
+            const inputCsrf = document.createElement('input');
+            inputCsrf.type = 'hidden';
+            inputCsrf.name = '_token';
+            inputCsrf.value = csrfToken;
+            form.appendChild(inputCsrf);
+
+            // Adicionar método DELETE
+            const inputMethod = document.createElement('input');
+            inputMethod.type = 'hidden';
+            inputMethod.name = '_method';
+            inputMethod.value = 'DELETE'; // Método DELETE
+            form.appendChild(inputMethod);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    });
+}
+
+
+
+    </script>
 </body>
 </html>

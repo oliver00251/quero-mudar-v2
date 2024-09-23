@@ -14,14 +14,9 @@
             <i class="fas fa-calendar-alt"></i>
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" id="toggleButton">
         <a class="nav-link" href="#">
             <i class="fas fa-chart-line"></i>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-info-circle"></i>
         </a>
     </li>
     <li class="nav-item">
@@ -29,6 +24,12 @@
             <i class="fas fa-users"></i>
         </a>
     </li>
+    <li class="nav-item" id="toggleButtonDetalhamento">
+        <a class="nav-link" href="#">
+            <i class="fas fa-list"></i>
+        </a>
+    </li>
+   
     <li class="nav-item"  data-bs-toggle="modal" data-bs-target="#lancamentoModal">
         <a class="nav-link" href="#">
             <i class="fas fa-user"></i>
