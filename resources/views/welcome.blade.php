@@ -35,7 +35,17 @@
     
 </div>
 <div class="text-muted">
-    <h4>Balanço do dia {{ now()->format('d/m/Y') }}</h4>
+    <h4>
+       <div class="text-muted">
+            @if($sem_data_periodo) <!-- Verifica se o usuário não escolheu um período -->
+                <h4>Balanço do dia {{ now()->format('d/m/Y') }}</h4>
+            @else
+                <h4>Balanço do período: {{ \Carbon\Carbon::parse($start_date)->format('d/m/Y') }} a {{ \Carbon\Carbon::parse($end_date)->format('d/m/Y') }}</h4>
+            @endif
+        </div>
+        
+
+    </h4>
 </div>
 @include('partials.cards')
 {{-- Exibir Lançamentos --}}
@@ -46,6 +56,10 @@
 <div id="toggleElement-detalhamento" style="display: none">
     @include('detalhamento-categoria')
  </div>
+ {{-- exibir clientes --}}
+ <div id="toggleElement-cliente" style="display: none">
+    @include('clientes_demandas')
+ </div>
 
 <style>
     li.list-group-item {
@@ -53,7 +67,7 @@
         justify-content: space-between;
     }
 </style>
-
+@include('modal.clientes-moradas')
 @include('partials.modal')
 @include('modal.entradas')
 @include('modal.saidas')
@@ -86,6 +100,12 @@ $(document).ready(function() {
         $('#toggleElement').hide();
         // Alternar a exibição do elemento de detalhamento
         $('#toggleElement-detalhamento').toggle();
+    });
+    $('#clientes_demandas').click(function() {
+        // Esconder o elemento principal
+        $('#toggleElement').hide();
+        // Alternar a exibição do elemento de detalhamento
+        $('#toggleElement-cliente').toggle();
     });
 });
 

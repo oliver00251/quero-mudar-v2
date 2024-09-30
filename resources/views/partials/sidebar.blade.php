@@ -19,7 +19,7 @@
             <i class="fas fa-chart-line"></i>
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" id="clientes_demandas">
         <a class="nav-link" href="#">
             <i class="fas fa-users"></i>
         </a>

@@ -16,6 +16,9 @@ class HomeController extends Controller
     $end_date = $request->input('end_date', now()->format('Y-m-d'));
     $tipo = $request->input('tipo');
 
+    // Verificar se o usuário não forneceu um intervalo de datas
+    $sem_data_periodo = ($request->input('start_date') == null && $request->input('end_date') == null);
+
     // Buscar os meses, anos e dias únicos da coluna data (se precisar para o dropdown)
     $datas = Pagamento::select(DB::raw('DISTINCT DAY(data) as dia, MONTH(data) as mes, YEAR(data) as ano'))
         ->orderBy('ano', 'desc')
@@ -52,10 +55,12 @@ class HomeController extends Controller
 
     $categoria = Categoria::orderBy('ordem')->get();
     $clientes = ClienteDemanda::with('enderecos')->get();
-   // dd($somaPorCategoria);
-    return view('welcome', compact('categoria', 'clientes', 'tipo', 'total_geral', 'pagamentos', 'total_entradas', 'total_saidas', 'datas', 'start_date', 'end_date', 'somaPorCategoria'));
+
+    // Retornar a view com as variáveis
+    return view('welcome', compact('categoria', 'clientes', 'tipo', 'total_geral', 'pagamentos', 'total_entradas', 'total_saidas', 'datas', 'start_date', 'end_date', 'somaPorCategoria', 'sem_data_periodo'));
 }
 
+    
     
 
 

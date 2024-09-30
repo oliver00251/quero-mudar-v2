@@ -4,11 +4,11 @@
             <li class="list-group-item active d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalCategoriaEntrada">
                 <span>Entradas</span>
                 <span>
-                    <i class="fa fa-plus-circle fa-plus-circle-entrada" 
+                    <i class="{{-- fa fa-plus-circle fa-plus-circle-entrada --}}" 
                        style="cursor: pointer;" 
-                       data-bs-toggle="modal" 
-                       data-bs-target="#modalCategoriaEntrada" 
-                       title="Adicionar Entrada"></i>
+                     {{--   data-bs-toggle="modal"  --}}
+                  {{--      data-bs-target="#modalCategoriaEntrada"  --}}
+                       title="Adicionar Entrada">+</i>
                 </span>
             </li>
             
