@@ -25,8 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
+        // Carrega todos os comandos da pasta app/Console/Commands
         $this->load(__DIR__.'/Commands');
 
+        // Inclui comandos definidos no arquivo routes/console.php
         require base_path('routes/console.php');
     }
 }
