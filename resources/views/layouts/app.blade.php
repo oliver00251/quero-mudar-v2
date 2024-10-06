@@ -94,9 +94,12 @@
 </head>
 <body>
    
+    @auth
     <div class="sidebar card shadow bg-white">
         @include('partials.sidebar')
     </div>
+@endauth
+
 
     <div class="content">
         <h1 class="mb-4">@yield('header')</h1>
