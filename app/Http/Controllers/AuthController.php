@@ -14,6 +14,7 @@ class AuthController extends Controller
     }
 
     // Processar o login
+   // Processar o login
     public function login(Request $request)
     {
         // Validação dos dados
@@ -33,6 +34,7 @@ class AuthController extends Controller
         // Redireciona de volta com uma mensagem de erro se a autenticação falhar
         return redirect()->back()->with('error', 'Credenciais inválidas');
     }
+
 
     // Logout do usuário
     public function logout()
