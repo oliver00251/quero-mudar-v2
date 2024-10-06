@@ -25,14 +25,13 @@ class AuthController extends Controller
 
         // Autenticar o usuário
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
             // Redireciona se o login for bem-sucedido
             return redirect()->intended('dashboard')->with('success', 'Login realizado com sucesso');
+        } else {
+            dd('Credenciais não correspondem', $credentials);
         }
-
-        // Redireciona de volta com uma mensagem de erro se a autenticação falhar
-        return redirect()->back()->with('error', 'Credenciais inválidas');
+        
     }
 
 
