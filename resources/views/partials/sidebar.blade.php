@@ -9,32 +9,32 @@
 </div>
 
 <ul class="nav flex-column">
-    <li class="nav-item">
+    <li class="nav-item" title="Filtrar Periodo">
         <a class="nav-link" href="#" id="toggleCollapse">
             <i class="fas fa-calendar-alt"></i>
         </a>
     </li>
-    <li class="nav-item" id="toggleButton">
+    <li class="nav-item" id="toggleButton" title="Gerenciar Balanço">
         <a class="nav-link" href="#">
             <i class="fas fa-chart-line"></i>
         </a>
     </li>
-    <li class="nav-item" id="clientes_demandas">
+    <li class="nav-item" id="clientes_demandas" title="Gerenciar Clientes">
         <a class="nav-link" href="#">
             <i class="fas fa-users"></i>
         </a>
     </li>
-    <li class="nav-item" id="toggleButtonDetalhamento">
+    <li class="nav-item" id="toggleButtonDetalhamento" title="Gerenciar Detalhamento ">
         <a class="nav-link" href="#">
             <i class="fas fa-list"></i>
         </a>
     </li>
    
-    <li class="nav-item"  data-bs-toggle="modal" data-bs-target="#lancamentoModal">
+   {{--  <li class="nav-item"  data-bs-toggle="modal" data-bs-target="#lancamentoModal">
         <a class="nav-link" href="#">
             <i class="fas fa-user"></i>
         </a>
-    </li>
+    </li> --}}
 </ul>
 
 <style>

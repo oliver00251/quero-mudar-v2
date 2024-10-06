@@ -88,26 +88,29 @@
  
 });
 $(document).ready(function() {
+    function toggleSingleElement(showElement) {
+        // Esconde todos os elementos que você quer alternar
+        $('#toggleElement, #toggleElement-detalhamento, #toggleElement-cliente').hide();
+        // Exibe o elemento clicado
+        $(showElement).show();
+    }
+
+    // Clique no botão para alternar o gráfico de linha
     $('#toggleButton').click(function() {
-        // Esconder o elemento do detalhamento
-        $('#toggleElement-detalhamento').hide();
-        // Alternar a exibição do elemento principal
-        $('#toggleElement').toggle();
+        toggleSingleElement('#toggleElement');
     });
 
+    // Clique no botão para alternar o detalhamento
     $('#toggleButtonDetalhamento').click(function() {
-        // Esconder o elemento principal
-        $('#toggleElement').hide();
-        // Alternar a exibição do elemento de detalhamento
-        $('#toggleElement-detalhamento').toggle();
+        toggleSingleElement('#toggleElement-detalhamento');
     });
+
+    // Clique no botão para alternar as demandas de clientes
     $('#clientes_demandas').click(function() {
-        // Esconder o elemento principal
-        $('#toggleElement').hide();
-        // Alternar a exibição do elemento de detalhamento
-        $('#toggleElement-cliente').toggle();
+        toggleSingleElement('#toggleElement-cliente');
     });
 });
+
 
 
 
