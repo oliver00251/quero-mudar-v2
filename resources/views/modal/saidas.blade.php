@@ -32,8 +32,13 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="veiculo_saida" class="form-label">Veículo</label>
-                        <input type="text" class="form-control" id="veiculo_saida" name="veiculo" placeholder="Digite o modelo do veículo">
+                        <label for="veiculo" class="form-label">Veículo</label>
+                        <select class="form-select" id="veiculo" name="veiculo" required>
+                            <option value="">Selecione</option>
+                            @foreach ($veiculos as $item)
+                                <option value="{{ $item->modelo }}">{{ $item->modelo }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3">
