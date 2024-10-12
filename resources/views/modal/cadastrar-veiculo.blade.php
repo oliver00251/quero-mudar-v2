@@ -17,8 +17,8 @@
                             name="placa" required>
                     </div>
                     <div class="mb-3">
-                        <label for="modeloVeiculo" class="form-label">Modelo</label>
-                        <input type="text" class="form-control" placeholder="Modelo do veículo..." id="modeloVeiculo"
+                        <label for="modeloVeiculo" class="form-label">Marca/Modelo</label>
+                        <input type="text" class="form-control" placeholder="Marca e Modelo  do veículo..." id="modeloVeiculo"
                             name="modelo" required>
                     </div>
                     <div class="mb-3">
