@@ -20,7 +20,6 @@ class PagamentoController extends Controller
         try {
             // Validar os dados de entrada
             $request->validate([
-                'descricao' => 'required|string|max:255',
                 'categoria' => 'required|integer',
                 'vlr_transacao' => 'required|numeric',
                 'tipo' => 'required|string',
