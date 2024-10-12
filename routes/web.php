@@ -15,6 +15,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\TransacaoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VeiculoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,5 +130,17 @@ Route::prefix('clientes')->group(function () {
         Route::put('{usuario}', [UsuarioController::class, 'update'])->name('update');
         Route::delete('{usuario}', [UsuarioController::class, 'destroy'])->name('destroy');
     });
+
+    // Veículos
+    Route::prefix('veiculos')->name('veiculos.')->group(function () {
+        Route::get('/', [VeiculoController::class, 'index'])->name('index'); // Listar veículos
+        Route::get('create', [VeiculoController::class, 'create'])->name('create'); // Exibir o formulário de criação
+        Route::post('/', [VeiculoController::class, 'store'])->name('store'); // Salvar o novo veículo
+        Route::get('{veiculo}', [VeiculoController::class, 'show'])->name('show'); // Exibir detalhes de um veículo
+        Route::get('{veiculo}/edit', [VeiculoController::class, 'edit'])->name('edit'); // Exibir o formulário de edição
+        Route::put('{veiculo}', [VeiculoController::class, 'update'])->name('update'); // Atualizar o veículo
+        Route::delete('{veiculo}', [VeiculoController::class, 'destroy'])->name('destroy'); // Excluir o veículo
+    });
+
 
 });

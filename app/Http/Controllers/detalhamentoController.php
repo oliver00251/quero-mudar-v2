@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\ClienteDemanda;
 use App\Models\Pagamento;
+use App\Models\Veiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,7 +49,7 @@ class detalhamentoController extends Controller
         ->groupBy('categoria_id', 'tipo','data')
         ->get();
       
-       
-        return view('detalhamento', compact('pagamento_agrupados','categoria','clientes','tipo', 'total_geral', 'pagamentos', 'total_entradas', 'total_saidas', 'datas', 'mes', 'ano'));
+       $veiculos = Veiculo::get();
+        return view('detalhamento', compact('pagamento_agrupados','veiculos','categoria','clientes','tipo', 'total_geral', 'pagamentos', 'total_entradas', 'total_saidas', 'datas', 'mes', 'ano'));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\ClienteDemanda;
 use App\Models\Pagamento;
+use App\Models\Veiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -55,15 +56,15 @@ class HomeController extends Controller
 
     $categoria = Categoria::orderBy('ordem')->get();
     $clientes = ClienteDemanda::with('enderecos')->get();
+    $veiculos = Veiculo::get();
+    
+
 
     // Retornar a view com as variáveis
-    return view('welcome', compact('categoria', 'clientes', 'tipo', 'total_geral', 'pagamentos', 'total_entradas', 'total_saidas', 'datas', 'start_date', 'end_date', 'somaPorCategoria', 'sem_data_periodo'));
+    return view('welcome', compact('categoria', 'clientes','veiculos', 'tipo', 'total_geral', 'pagamentos', 'total_entradas', 'total_saidas', 'datas', 'start_date', 'end_date', 'somaPorCategoria', 'sem_data_periodo'));
 }
 
     
-    
-
-
     public function cliente()
     {
         $clientesDemandas = ClienteDemanda::with('enderecos')->get();

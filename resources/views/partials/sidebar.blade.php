@@ -3,9 +3,7 @@
     width: 61px;
     border-radius: 100%;
     margin-right: -1rem;
-    "
-
-    >
+    ">
 </div>
 
 <ul class="nav flex-column">
@@ -24,17 +22,18 @@
             <i class="fas fa-users"></i>
         </a>
     </li>
-    <li class="nav-item" id="toggleButtonDetalhamento" title="Gerenciar Detalhamento ">
+    <li class="nav-item" id="toggleButtonDetalhamento" title="Gerenciar Detalhamento">
         <a class="nav-link" href="#">
             <i class="fas fa-list"></i>
         </a>
     </li>
-   
-   {{--  <li class="nav-item"  data-bs-toggle="modal" data-bs-target="#lancamentoModal">
-        <a class="nav-link" href="#">
-            <i class="fas fa-user"></i>
+   <!-- Item que representa Caminhão -->
+    <li class="nav-item" title="Gerenciar Veículos" data-bs-toggle="modal" data-bs-target="#modalCadastrarVeiculo"> 
+        <a class="nav-link" href="#" >
+            <i class="fas fa-truck"></i>
         </a>
-    </li> --}}
+    </li>
+
 </ul>
 
 <style>

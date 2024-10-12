@@ -75,6 +75,7 @@
 @include('modal.categoria-saida')
 @include('modal.fornecedores')
 @include('modal.clientes')
+@include('modal.cadastrar-veiculo')
 
 <script>
     $(document).ready(function() {

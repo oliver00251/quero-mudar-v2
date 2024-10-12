@@ -39,13 +39,17 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5>Lançamentos</h5>
+                <div>
+                    <strong>Tipo R = Receita</strong><br>
+                    <strong>Tipo D = Despesa</strong>
+                </div>
             </div>
             <div class="card-body">
                 <table id="lancamentosTable" class="table table-striped table-bordered">
                     <thead class="table-light">
                         <tr>
                             <th>Tipo</th>
-                            <th>Descrição</th>
+                            <th>Veiculo</th>
                             <th>Categoria</th>
                             <th>Valor</th>
                             <th>Data Referência</th>
@@ -55,15 +59,15 @@
                     </thead>
                     <tbody>
                         @foreach($pagamentos as $pagamento)
-                        <tr>
-                            <td>{{ $pagamento->tipo == 'R' ? 'Receita' : 'Despesa' }}</td>
-                            <td>{{ $pagamento->descricao }}</td>
-                            <td>{{ $pagamento->categoria->nome ?? 'N/A' }}</td>
-                            <td>€ {{ number_format($pagamento->valor, 2, ',', '.') }}</td> <!-- Adicionado o símbolo do euro -->
-                            <td>{{ \Carbon\Carbon::parse($pagamento->data)->format('d/m/Y') }}</td>
-                            <td>{{ $pagamento->created_at ? $pagamento->created_at->format('d/m/Y H:i') : 'N/A' }}</td>
+                        <tr class="{{ $pagamento->tipo == 'R' ? 'bg-success' : 'bg-danger'}} text-white" style="color: #fff !important">
+                            <td class="text-white" >{{ $pagamento->tipo }}</td>
+                            <td class="text-white">{{ $pagamento->veiculo }}</td>
+                            <td class="text-white">{{ $pagamento->categoria->nome ?? 'N/A' }}</td>
+                            <td class="text-white">€ {{ number_format($pagamento->valor, 2, ',', '.') }}</td> <!-- Adicionado o símbolo do euro -->
+                            <td class="text-white">{{ \Carbon\Carbon::parse($pagamento->data)->format('d/m/Y') }}</td>
+                            <td class="text-white">{{ $pagamento->created_at ? $pagamento->created_at->format('d/m/Y H:i') : 'N/A' }}</td>
                             <td>
-                                <i class="fas fa-edit editar_lancamento"
+                                <i class="fas fa-edit editar_lancamento text-white"
                                     style="cursor: pointer;"
                                     title="Editar"
                                     data-dados="{{$pagamento}}"
@@ -75,7 +79,7 @@
                                     <button type="button" class="btn btn-sm" title="Excluir" style="background: none; border: none" 
                                     data-rota="{{ route('pagamentos.destroy-transacao', $pagamento->id) }}" 
                                     onclick="confirmDelete(this)">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="fas fa-trash text-danger"></i>
                                     </button>
                                 </small>
                             </td>
