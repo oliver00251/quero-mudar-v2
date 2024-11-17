@@ -91,6 +91,18 @@ class VeiculoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Buscar o veículo pelo ID
+        $veiculo = Veiculo::find($id);
+    
+        // Verificar se o veículo existe
+        if (!$veiculo) {
+            return redirect()->back()->with('error', 'Veículo não encontrado.');
+        }
+    
+        // Excluir o veículo
+        $veiculo->delete();
+    
+        // Redirecionar com mensagem de sucesso
+        return redirect()->back()->with('success', 'Veículo excluído com sucesso!');
     }
 }

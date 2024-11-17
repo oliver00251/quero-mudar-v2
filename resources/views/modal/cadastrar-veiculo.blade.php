@@ -36,7 +36,39 @@
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($veiculos as $item)
+                        <tr>
+                            <td>{{ $item->modelo }}</td>
+                            <td>
+                                <!-- Botão para Editar -->
+                              {{--   <a href="{{ route('veiculos.edit', $item->id) }}" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-pencil-alt"></i> Editar
+                                </a> --}}
+            
+                                <!-- Botão para Excluir -->
+                                <form action="{{ route('veiculos.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este veículo?')">
+                                        <i class="fa fa-trash"></i> Excluir
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
         </div>
+        
     </div>
 </div>
 
