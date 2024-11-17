@@ -33,6 +33,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
 Route::get('/detalhamento', [detalhamentoController::class, 'index'])->name('detalhamento.index');
+// gerar relatório 
+Route::get('/relatorio/balanco', [HomeController::class, 'gerarRelatorio'])->name('relatorio.balanco');
 
 Route::get('{dia?}/{mes?}/{ano?}/{tipo?}', [HomeController::class, 'index'])->name('home.index');
 // Define a rota para o método cliente no HomeController

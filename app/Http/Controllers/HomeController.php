@@ -5,6 +5,7 @@ use App\Models\Categoria;
 use App\Models\ClienteDemanda;
 use App\Models\Pagamento;
 use App\Models\Veiculo;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,9 +70,46 @@ class HomeController extends Controller
 }
 
     
+   
+public function gerarRelatorio(Request $request)
+{
+    // Filtrar por data no relatório
+    $start_date = $request->input('start_date', Carbon::now()->startOfMonth()->format('Y-m-d'));
+    $end_date = $request->input('end_date', Carbon::now()->endOfMonth()->format('Y-m-d'));
+
+    // Somar receitas e despesas por categoria e data no período solicitado
+    $somaPorCategoria = Pagamento::with('categoria')
+        ->select('categoria_id', DB::raw('DATE(data) as data'))
+        ->selectRaw('SUM(CASE WHEN tipo = "R" THEN valor ELSE 0 END) as total_entradas')
+        ->selectRaw('SUM(CASE WHEN tipo = "D" THEN valor ELSE 0 END) as total_saidas')
+        ->whereBetween('data', [$start_date, $end_date])
+        ->groupBy('categoria_id', 'data')
+        ->get();
+
+    // Somar o total de entradas e saídas no período selecionado
+    $total_entradas = Pagamento::where('tipo', 'R')
+        ->whereBetween('data', [$start_date, $end_date])
+        ->sum('valor');
+
+    $total_saidas = Pagamento::where('tipo', 'D')
+        ->whereBetween('data', [$start_date, $end_date])
+        ->sum('valor');
+
+    // Carregar a view do relatório
+    $pdf = Pdf::loadView('relatorios.balanco_financeiro', compact('somaPorCategoria', 'start_date', 'end_date', 'total_entradas', 'total_saidas'));
+
+    // Retornar o PDF para download
+    return $pdf->download('balanco_financeiro_' . Carbon::now()->format('Y_m_d') . '.pdf');
+}
+
+
+
     public function cliente()
     {
         $clientesDemandas = ClienteDemanda::with('enderecos')->get();
         return view('clientes_demandas-teste', compact('clientesDemandas'));
     }
+
+
+
 }

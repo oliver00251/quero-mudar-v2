@@ -52,4 +52,6 @@ class detalhamentoController extends Controller
        $veiculos = Veiculo::get();
         return view('detalhamento', compact('pagamento_agrupados','veiculos','categoria','clientes','tipo', 'total_geral', 'pagamentos', 'total_entradas', 'total_saidas', 'datas', 'mes', 'ano'));
     }
+
+    
 }

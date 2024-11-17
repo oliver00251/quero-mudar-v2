@@ -2,6 +2,13 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5>Detalhamento</h5>
+            <form action="{{ route('relatorio.balanco') }}" method="GET" target="_blank">
+                <label for="start_date">Data Início:</label>
+                <input type="date" id="start_date" name="start_date" value="{{ $start_date }}">
+                <label for="end_date">Data Fim:</label>
+                <input type="date" id="end_date" name="end_date" value="{{ $end_date }}">
+                <button type="submit">Gerar PDF</button>
+            </form>
         </div>
         <div class="card-body">
             <table id="lancamentosTable" class="table table-striped table-bordered">
