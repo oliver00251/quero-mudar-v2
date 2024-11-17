@@ -38,7 +38,11 @@
     <h4>
        <div class="text-muted">
             @if($sem_data_periodo) <!-- Verifica se o usuário não escolheu um período -->
-                <h4>Balanço do dia {{ now()->format('d/m/Y') }}</h4>
+            @php
+            \Carbon\Carbon::setLocale('pt_BR'); // Configura o Carbon para português
+            @endphp
+            <h4>Balanço do mês de {{ now()->translatedFormat('F Y') }}</h4>
+        
             @else
                 <h4>Balanço do período: {{ \Carbon\Carbon::parse($start_date)->format('d/m/Y') }} a {{ \Carbon\Carbon::parse($end_date)->format('d/m/Y') }}</h4>
             @endif

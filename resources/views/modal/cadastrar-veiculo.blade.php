@@ -1,7 +1,7 @@
 <div class="modal fade" id="modalCadastrarVeiculo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="modalVeiculoLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" id="modal_cad_veiculos">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalVeiculoLabel">Cadastrar Veículo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -40,14 +40,14 @@
                 <thead>
                     <tr>
                         <th>Modelo</th>
-                        <th>Ações</th>
+                        <th class="table_acoes_vei">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($veiculos as $item)
                         <tr>
                             <td>{{ $item->modelo }}</td>
-                            <td>
+                            <td class="table_acoes_vei">
                                 <!-- Botão para Editar -->
                               {{--   <a href="{{ route('veiculos.edit', $item->id) }}" class="btn btn-sm btn-primary">
                                     <i class="fa fa-pencil-alt"></i> Editar
@@ -71,7 +71,11 @@
         
     </div>
 </div>
-
+<style>
+   .table_acoes_vei {
+    text-align: right;
+}
+</style>
 <script>
  document.addEventListener('DOMContentLoaded', function() {
     // Quando clicar no ícone de edição

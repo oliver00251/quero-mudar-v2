@@ -5,6 +5,7 @@ use App\Models\Categoria;
 use App\Models\ClienteDemanda;
 use App\Models\Pagamento;
 use App\Models\Veiculo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,8 +14,11 @@ class HomeController extends Controller
     public function index(Request $request)
 {
     // Se as datas não forem fornecidas, usar a data atual como padrão
-    $start_date = $request->input('start_date', now()->format('Y-m-d'));
-    $end_date = $request->input('end_date', now()->format('Y-m-d'));
+   /*  $start_date = $request->input('start_date', now()->format('Y-m-d'));
+    $end_date = $request->input('end_date', now()->format('Y-m-d')); */
+    // Se as datas não forem fornecidas, usar o primeiro e o último dia do mês atual como padrão
+    $start_date = $request->input('start_date', Carbon::now()->startOfMonth()->format('Y-m-d'));
+    $end_date = $request->input('end_date', Carbon::now()->endOfMonth()->format('Y-m-d'));
     $tipo = $request->input('tipo');
 
     // Verificar se o usuário não forneceu um intervalo de datas
