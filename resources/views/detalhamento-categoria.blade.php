@@ -14,7 +14,7 @@
             <table id="lancamentosTable" class="table table-striped table-bordered">
                 <thead class="table-light">
                     <tr>
-                        <th>Categoria</th>
+                        <th>CategoriaT</th>
                         <th>Total Entradas</th>
                         <th>Total Saídas</th>
                         <th>Data Referência</th>

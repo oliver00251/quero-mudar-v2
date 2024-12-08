@@ -52,12 +52,14 @@ class HomeController extends Controller
 
     // Somar receitas e despesas por categoria e data
     $somaPorCategoria = Pagamento::with('categoria')
-        ->select('categoria_id', DB::raw('DATE(data) as data'))
-        ->selectRaw('SUM(CASE WHEN tipo = "R" THEN valor ELSE 0 END) as total_entradas')
-        ->selectRaw('SUM(CASE WHEN tipo = "D" THEN valor ELSE 0 END) as total_saidas')
-        ->whereBetween('data', [$start_date, $end_date])
-        ->groupBy('categoria_id', 'data')
-        ->get();
+    ->select('categoria_id')
+    ->selectRaw('SUM(CASE WHEN tipo = "R" THEN valor ELSE 0 END) as total_entradas')
+    ->selectRaw('SUM(CASE WHEN tipo = "D" THEN valor ELSE 0 END) as total_saidas')
+    ->whereBetween('data', [$start_date, $end_date])
+    ->groupBy('categoria_id')
+    ->get();
+
+        //dd($somaPorCategoria,$start_date, $end_date);
 
     $categoria = Categoria::orderBy('ordem')->get();
     $clientes = ClienteDemanda::with('enderecos')->get();
@@ -79,12 +81,12 @@ public function gerarRelatorio(Request $request)
 
     // Somar receitas e despesas por categoria e data no período solicitado
     $somaPorCategoria = Pagamento::with('categoria')
-        ->select('categoria_id', DB::raw('DATE(data) as data'))
-        ->selectRaw('SUM(CASE WHEN tipo = "R" THEN valor ELSE 0 END) as total_entradas')
-        ->selectRaw('SUM(CASE WHEN tipo = "D" THEN valor ELSE 0 END) as total_saidas')
-        ->whereBetween('data', [$start_date, $end_date])
-        ->groupBy('categoria_id', 'data')
-        ->get();
+    ->select('categoria_id')
+    ->selectRaw('SUM(CASE WHEN tipo = "R" THEN valor ELSE 0 END) as total_entradas')
+    ->selectRaw('SUM(CASE WHEN tipo = "D" THEN valor ELSE 0 END) as total_saidas')
+    ->whereBetween('data', [$start_date, $end_date])
+    ->groupBy('categoria_id')
+    ->get();
 
     // Somar o total de entradas e saídas no período selecionado
     $total_entradas = Pagamento::where('tipo', 'R')
