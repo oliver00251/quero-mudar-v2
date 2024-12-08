@@ -43,10 +43,10 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
+                  {{--   <div class="mb-3">
                         <label for="qtd_ajudante" class="form-label">Quantidade Ajudante</label>
                         <input type="number" class="form-control" id="qtd_ajudante" name="qtd_ajudante" placeholder="Digite a quantidade de ajudantes">
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="qtd_horas" class="form-label">Quantidade de Horas</label>

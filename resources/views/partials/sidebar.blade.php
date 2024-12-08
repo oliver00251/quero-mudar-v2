@@ -33,6 +33,23 @@
             <i class="fas fa-truck"></i>
         </a>
     </li>
+   
+    <li class="nav-item" title="Adicionar Entrada" data-bs-toggle="modal" > 
+        <a class="nav-link" href="#" >
+            <i class="fa fa-plus-circle fa-plus-circle-entrada"></i>
+        </a>
+    </li>
+    <li class="nav-item" title="Adicionar Saída" data-bs-toggle="modal" data-bs-target="#modalSaidas"> 
+        <a class="nav-link" href="#" >
+            <i class=" fa fa-plus-circle fas fa-arrow-down text-danger"></i>
+        </a>
+    </li>
+    <li class="nav-item toggleButtonGerenciar"  title="Gerenciar Entrada e Saída" > 
+        <a class="nav-link" href="#" >
+            <i class=" fas fa-cogs"></i>
+        </a>
+    </li>
+    
 
 </ul>
 
@@ -53,4 +70,32 @@
             content.style.display = 'none';
         }
     });
+    document.querySelectorAll('.toggleButtonGerenciar').forEach((button) => {
+    button.addEventListener('click', function () {
+        console.log('Botão clicado!');  // Verifica se o evento está sendo disparado
+        
+        const content = document.querySelector('.toggleContent');
+        const content2 = document.querySelector('.toggleContent2');
+
+        // Alterna a visibilidade de 'content'
+        if (content) {
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+
+        // Alterna a visibilidade de 'content2'
+        if (content2) {
+            if (content2.style.display === 'none' || content2.style.display === '') {
+                content2.style.display = 'block';
+            } else {
+                content2.style.display = 'none';
+            }
+        }
+    });
+});
+
+
 </script>

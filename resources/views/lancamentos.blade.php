@@ -1,5 +1,5 @@
 <div class="row mb-4">
-    <div class="col-md-2">
+    <div class="col-md-2 toggleContent" style="display: none">
         <ul class="list-group">
             <li class="list-group-item active d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalCategoriaEntrada">
                 <span>Entradas</span>
@@ -35,7 +35,7 @@
     </div>
     
 
-    <div class="col-md-8">
+    <div class="col-md">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5>Lançamentos</h5>
@@ -93,7 +93,7 @@
     </div>
 
 
-    <div class="col-md-2">
+    <div class="col-md-2 toggleContent2" style="display: none">
         <ul class="list-group">
             <li class="list-group-item active bg-danger border-0 d-flex justify-content-between" 
                 data-bs-toggle="modal" 
